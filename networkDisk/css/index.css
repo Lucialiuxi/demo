@@ -1,0 +1,904 @@
+/* css reset */
+body,h1,h2,h3,h4{
+  margin: 0;
+}
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+input{
+  padding: 0;
+  border: none;
+  outline: none;
+}
+a{
+  text-decoration: none;
+}
+em{
+  font-style: normal;
+  font-weight: normal;
+}
+mark{
+  background: #ffffff;
+}
+/* tools */
+body{
+  height: 100%;
+  width: 100%;
+  background-color: #6ea7b2;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.clearfix:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+/* main */
+#wrap{
+  margin: 10px auto;
+  width: 1200px;
+  background-color: #e1e8ed;
+  border-top: 1px solid #d0d9de;
+  border-radius: 16px;
+  overflow: hidden;
+}
+#head{
+  width: 1200px;
+  height: 70px;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  background-color: #ffffff; 
+}
+#head .yun-logo{
+	width: 132px;
+  height: 36px;
+  margin: 17px 0 17px 28px;
+  float: left;
+  /* background-color:pink; */
+}
+#head .yun-logo span{
+  float: left;
+}
+#head .yun-logo .logo{
+  color: transparent;
+	width: 45px;
+  height: 35px;
+  margin-right: 14px;
+  background: url(../img/yun.png) no-repeat 0 -5px;
+  background-size: 100%;
+}
+#head .yun-logo .webTitle{
+	width: 72px;
+  height: 36px;
+	font-family: FZLTXHK--GBK1-0;
+	font-size: 18px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 36px;
+	letter-spacing: 0px;
+	color: #389cd1;
+  float: left;
+}
+/* 提示 */
+#tips{
+  float: left;
+  height: 70px;
+  width: 650px;
+  margin-left: 90px;
+  position: relative;
+  /* background: brown; */
+  overflow: hidden;
+}
+#tips span{
+  height: 40px;
+  line-height: 40px;
+  border-radius: 19px;
+  margin-top: 15px;
+  text-align: center;
+  position: absolute;
+	font-family: FZLTXHK--GBK1-0;
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+  color: #ffffff;
+  padding-left: 45px;
+  box-sizing: border-box;
+  text-align: left;
+  /* display: none; */
+}
+#tips .tryAgainLater{
+  width: 256px;
+	background: rgba(235, 107, 107, 0.8) url(../img/tryAgainLater.png) no-repeat 19px 8px;
+  opacity: 0.8;
+  top: -60px;
+  left: 0;
+}
+/* 删除成功、新建成功、新建失败 的提示条*/
+#tips .sucessfull{
+	width: 166px;
+  background: #86ce8b url(../img/deleteSucessfull.png) no-repeat 19px 8px;
+  top: -60px;
+  left: 272px;
+}
+#tips .pleaseSeletFolder{
+	width: 200px;
+  background: #f3a960 url(../img/pleaseSeletFolder.png) no-repeat 19px 8px;
+  top: -60px;
+  left: 450px;
+}
+#head-right {
+	width: 103px;
+	height: 40px;
+  /* background-color:pink; */
+  float: right;
+  margin: 15px 40px 15px 0; 
+}
+#userAvatar{
+	width: 32px;
+	height: 32px;
+	background-color: #616b88;
+  float: left;
+  margin: 5px 4px 3px;
+  background-size: 32px 32px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+#userAvatar img{
+	width: 32px;
+	height: 32px;
+}
+#know-detail{
+  float: right;
+	width: 56px;
+	height: 16px;
+  /* background-color: plum; */
+  margin: 13px 0 11px;
+}
+#privacy-info {
+  text-indent: -9999px;
+  margin-right: 15px;
+	width: 8px;
+	height: 4px;
+  /* background-color: green; */
+  margin-top: 7px;
+  margin-bottom: 5px;
+  background: url(../img/pulldown.png) no-repeat;
+  background-size: 8px 4px;
+}
+#setting-center{
+  text-indent: -9999px;
+	width: 12px;
+	height: 12px;
+  /* background-color: green; */
+  background: url(../img/setting.png) no-repeat;
+  margin: 2px;
+  background-size: 12px 12px;
+}
+#know-detail .line{
+	width: 1px;
+	height: 22px;
+  background-color: #e0e6e7;
+  position: relative;
+  top: -3px;
+}
+#nav {
+	width: 1200px;
+	height: 60px;
+	background-color: #d0d9de;
+}
+#nav .nav-left{
+  height: 60px;
+	/* background-color: yellow; */
+}
+#nav .nav-left span{
+	background-color: #ffffff;
+	border: solid 1px #d0d9de;
+	border-radius: 5px;
+	height: 38px;
+  margin-top: 11px;
+  margin-left: 10px;
+  text-indent: 56px;
+	font-family: FZLTXHK--GBK1-0;
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 38px;
+	letter-spacing: 0px;
+  color: #66757f;
+  cursor: pointer;
+}
+#nav .nav-left span:hover{
+	border: solid 1px #55addc;
+	color: #55addc;
+}
+
+#nav .nav-left .download{
+  width: 110px;
+  margin-left: 20px;
+  background:#ffffff url(../img/download.png) no-repeat 22px 12px;
+}
+#nav .nav-left .download:hover{
+  background:#ffffff url(../img/download1.png) no-repeat 22px 12px;
+}
+
+#nav .nav-left .share{
+	width: 110px;
+  background:#ffffff url(../img/share.png) no-repeat 21px 13px;
+}
+#nav .nav-left .share:hover{
+  background:#ffffff url(../img/share1.png) no-repeat 21px 12px;
+}
+
+#nav .nav-left .moveTo{
+	width: 120px;
+  background:#ffffff url(../img/moveTo.png) no-repeat 21px 12px;
+}
+#nav .nav-left .moveTo:hover{
+  background:#ffffff url(../img/moveTo1.png) no-repeat 21px 12px;
+}
+
+#nav .nav-left .rename{
+  width: 120px;
+  background:#ffffff url(../img/rename.png) no-repeat 21px 12px;
+}
+#nav .nav-left .rename:hover{
+  background:#ffffff url(../img/rename1.png) no-repeat 21px 12px;
+}
+
+#nav .nav-left .delete{
+	width: 110px;
+  background:#ffffff url(../img/delete.png) no-repeat 22px 12px;
+}
+#nav .nav-left .delete:hover{
+	width: 110px;
+  background:#ffffff url(../img/delete1.png) no-repeat 22px 12px;
+}
+
+#nav .nav-left .create{
+	width: 154px;
+  background:#ffffff url(../img/create.png) no-repeat 21px 12px;
+}
+#nav .nav-left .create:hover{
+	width: 154px;
+  background:#ffffff url(../img/create1.png) no-repeat 21px 12px;
+}
+
+#nav .nav-left .refresh{
+	width: 38px;
+  text-indent: -9999px;
+  background:#ffffff url(../img/refresh.png) no-repeat 11px 12px;
+}
+#nav .nav-left .refresh:hover{
+  background:#ffffff url(../img/refresh1.png) no-repeat 11px 12px;
+}
+
+
+#nav .nav-right{
+  position: relative;
+  height: 60px;
+  /* background-color: yellow; */
+	width: 130px;
+  text-indent: -9999px;
+}
+#nav .nav-right span{
+  margin-top: 11px;
+	height: 38px;
+	border: solid 1px #d0d9de;
+	border-radius: 5px;
+}
+#nav .nav-right .sortMethodView{
+  width: 38px;
+  margin-right: 10px;
+	background: #ffffff url(../img/sortMethodView.png) no-repeat 11px 11px;
+}
+#nav .nav-right .sortMethodView:hover{
+	background: #55addc url(../img/sortMethodView2.png) no-repeat 11px 11px;
+}
+#nav .nav-right .sortMethod{
+  position: relative;
+	width: 58px;
+  margin-right: 20px;
+	background:#ffffff url(../img/sortMethod.png) no-repeat 11px 11px;
+}
+#nav .sortMethod .pulldownOrCollapse,
+#nav .nav-right .pulldownOrCollapse{
+  width: 8px;
+  height: 4px;
+  position: absolute;
+  top: 8px;
+  left: 36px;
+  background:red url(../img/pulldown.png) no-repeat;
+  background-size: 8px 4px;
+  border: none;
+}
+#nav .sortMethod .sortMethodMenu {
+	width: 132px;
+	height: 158px;
+	background-color: #ffffff;
+	border: solid 1px #55addc;
+}
+/* 点击排序方式的时候 */
+#nav .nav-right .sortMethod-Active{
+  position: relative;
+  width: 58px;
+  height: 48px;
+  margin-right: 20px;
+  border-radius: 5px 5px 0 0;
+  z-index: 100;
+	border: solid 1px #55addc;
+  border-bottom: 1px solid#ffffff;
+	background:#ffffff url(../img/sortMethod.png) no-repeat 11px 11px;
+ 
+}
+/* 排序方式选择列表 */
+nav .nav-right .sortMethodMenu{
+  position: absolute;
+  top: 60px;
+  right: 20px;
+	width: 132px;
+	height: 110px;
+	background-color: #ffffff;
+  border: solid 1px #55addc;
+  border-radius: 5px 0 5px 5px;
+  text-indent: 40px;
+  overflow: hidden;
+  margin-top: -1px;
+  z-index: 99;
+  display: none;
+}
+nav .sortMethodMenu li{
+	width: 130px;
+  height: 37px;
+	font-family: FZLTXHK--GBK1-0;
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 36px;
+	letter-spacing: 0px;
+  color: #66757f;
+  width: 100%;
+}
+nav .sortMethodMenu li:hover{
+  background-color: #e1e8ed;
+}
+nav .sortMethodMenu .sortByTime{
+	background:#ffffff url(../img/sortByTime.png) no-repeat 11px 14px;
+}
+nav .sortMethodMenu .sortByLetter{
+	background:#ffffff url(../img/sortByLetter.png) no-repeat 10px 11px;
+}
+nav .sortMethodMenu .thumbnail{
+	background:#ffffff url(../img/sortMethod.png) no-repeat 11px 11px;
+}
+#main{
+  height: 582px;
+	font-family: FZLTXHK--GBK1-0;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 36px;
+	letter-spacing: 0px;
+	color: #66757f;
+}
+
+#folders-menu{
+	width: 258px;
+	height: 582px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  float: left;
+}
+
+
+#folders-menu div{
+	font-size: 16px;
+  height: 45px;
+  line-height: 250%;
+  box-sizing: border-box;
+  display: block;
+  box-sizing: border-box;
+  padding-left: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+}
+/* 树形菜单每行鼠标悬停 */
+#folders-menu div:hover{
+  background-color: #f0f3f6;
+}
+/* 树形菜单每行点击 */
+#folders-menu div.active{
+  background-color: #e1e8ed;
+}
+/* 如果没有下一级目录，没有小三角 */
+#folders-menu div em{
+  height: 100%;
+  width: 10px;
+  font-style: normal;
+  text-indent: -9999px;
+  margin-right: 10px;
+  float: left;
+}
+/* 如果有下一级目录，有小三角 */
+/* 小三角 向下 */
+#folders-menu div em.icon-downward{
+  background: url(../img/triangle-downward.png) no-repeat 0 50%;
+}
+/* 小三角 向右 */
+#folders-menu div em.icon-rightward{
+  background: url(../img/triangle-rightward.png) no-repeat 0 50%;
+}
+
+/* 树形菜单文件夹 文件夹标志*/
+#folders-menu div mark{
+  height: 100%;
+  width: 16px;
+  text-indent: -9999px;
+  margin-right: 6px;
+  float: left;
+}
+/* 文件夹 文件打开 */
+#folders-menu div mark.unfold-folder-icon{
+  background: url(../img/unfold-folder.png) no-repeat 0 50%;
+}
+/* 文件夹 文件收起 */
+#folders-menu div mark.fold-folder-icon{
+  background: url(../img/fold-folder.png) no-repeat 0 50%;
+}
+
+#folders-menu div span{
+  width: 80px;
+  padding: 0;
+  float: left;
+  text-emphasis: emphasis;
+}
+
+
+
+/* 文件夹明细导航 */
+#folders-detail{
+  position: relative;
+	width: 940px;
+	height: 582px;
+	background-color: #f5f8fa;
+}
+#folders-hierarchy{
+	width: 940px;
+	height: 48px;
+	background-color: #ffffff;
+  border-bottom: 2px solid #e1e8ed;
+}
+/* 文件夹明细导航 的选中按钮的未选中*/
+#folders-hierarchy span.folders-hierarchy-checkbox{
+	width: 18px;
+	height: 18px;
+	background-color: #ffffff;
+  border: solid 1px #d0d9de;
+  margin: 15px 0 15px 15px;
+  margin-right: 27px;
+  float: left;
+}
+/* 导航全选 */
+#folders-hierarchy span.active{
+  background:url(../img/tick-icon.png) no-repeat;
+  background-size: 18px 18px;
+}
+/* 文件夹明细导航 的选中按钮的选中时*/
+#folders-content span.active{
+  background:url(../img/tick-icon.png) no-repeat;
+  background-size: 100%;
+  border: none;
+}
+/* 文件夹的层级显示 的文件夹*/
+#folders-hierarchy a{
+  position: relative;
+  z-index: 20;
+  height: 48px;
+  line-height: 48px;
+	font-family: 'FZLTXHK--GBK1-0';
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+  color: #2a3133;
+  text-align: center;
+  float: left;
+  border-bottom: 2px solid transparent;
+}
+/* 悬停的时候和处在那个文件夹的时候 文字高亮有下划线 */
+#folders-hierarchy a.folderName:hover,
+#folders-hierarchy a.active{
+  border-bottom: 2px solid #55addc;
+	color: #55addc;
+
+}
+#folders-hierarchy em.subordinate{
+	width: 10px;
+	height: 20px;
+  float: left;
+  text-indent: -9999px;
+  margin: 16px 7px 12px;
+  background: url(../img/subordinate.png) no-repeat;
+}
+/* 文件夹里面的内容 */
+#folders-content{
+  position: relative;
+	width: 840px;
+  height: 400px;
+  padding: 42px;
+  overflow: auto;
+}
+/* 没有下级文件时候显示的背景 */
+#folders-content.noChild{
+  background:url(../img/cover-bg.png) no-repeat 50% 50%;
+  background-size: 180px 127px;
+}
+/* 文件夹 */
+#folders-content .folder-item{
+  display: flex;
+  position: relative;
+  margin-bottom: 40px;
+  margin-right: 40px;
+  float: left;
+	width: 180px;
+	height: 180px;
+  background: #ebeff0 url(../img/bigfolder.png) no-repeat 50px 35px;
+  background-size: 80px 71px;
+	border-radius: 5px;
+	border: solid 1px transparent;
+}
+#folders-content .folder-item:hover{
+  background: #ffffff url(../img/bigfolder.png) no-repeat 50px 35px;
+}
+/* 文件夹点击被选中 */
+#folders-content .folder-item.active{
+	width: 180px;
+	height: 180px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 5px 0px 
+		rgba(85, 173, 220, 0.5);
+	border-radius: 5px;
+	border: solid 1px #55addc;
+}
+/* 选中文件勾选框 */
+#folders-content .folder-item .tickbox{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  text-indent: -9999px;
+	width: 16px;
+	height: 16px;
+  border: solid 1px transparent;
+}
+/* 大图标文件的选择框高亮 */
+#folders-content .folder-item:hover .tickbox{
+  border-color: #55addc;
+}
+/* 大图标文件的选择框选中 */
+#folders-content .folder-item span.active{
+  background:#55addc url(../img/tick-icon.png) no-repeat;
+  border: solid 1px #55addc;
+}
+#folders-content .folder-item .foldername{
+  height: 36px;
+  width: 120px;
+	font-family: FZLTXHK--GBK1-0;
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 36px;
+	letter-spacing: 0px;
+	color: #66757f;
+  display: inline-block;
+  margin: auto;
+  margin-top: 120px;
+  overflow: hidden;
+}
+#folders-content .folder-item .foldername input{
+  height: 100%;
+  width: 100%;
+	border-radius: 3px;
+  background-color: #ebeff0;
+  text-indent: 26px;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+}
+/* 文件夹被鼠标悬停和文件被选中的时候，文件名高亮 */
+#folders-content .folder-item:hover .foldername input{
+  color: #55addc;
+  background-color: #ffffff;
+}
+/* 新建的文件夹名获取焦点选中的时候文件名高亮，显示边框 */
+#folders-content .foldername input.active,
+#folders-content .foldername input.onfocus{
+  color: #55addc;
+  background-color: #ffffff;
+}
+#folders-content .foldername input.onfocus{
+  border: 1px solid #55addc;
+
+}
+/* 删除文件夹确认框 */
+#deleteEnsureBox{
+  position: absolute;
+  top: 50%;
+  left: 40%;
+	width: 320px;
+	height: 180px;
+	background: #ffffff url(../img/deleteEnsureBox-bg.png) no-repeat 37px 44px;
+	box-shadow: 1px 1px 5px 0px 
+		rgba(5, 2, 2, 0.1);
+	border-radius: 10px;
+  border: solid 2px #55addc;
+  display: none;
+}
+#deleteEnsureBox h3{
+  text-indent: 91px;
+	height: 16px;
+	font-family: FZLTXHK--GBK1-0;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 30px;
+	letter-spacing: 0px;
+  color: #000000;
+  margin-top: 43px;
+  margin-bottom: 15px;
+}
+#deleteEnsureBox h4{
+  text-indent: 92px;
+	height: 12px;
+	font-family: FZLTXHK--GBK1-0;
+	font-size: 12px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 30px;
+	letter-spacing: 0px;
+  color: #000000;
+  margin-bottom: 35px;
+}
+#deleteEnsureBox a,
+#move-to-New-position a{
+  display: inline-block;
+	font-family: FZLTXHK--GBK1-0;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+	color: #55addc;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 3px;
+  border: solid 1px #55addc;
+  text-align: center;
+}
+#deleteEnsureBox .ensure{
+  margin-left: 72px;
+  margin-right: 20px;
+
+}
+#move-to-New-position .ensureToMove{
+  margin-left: 100px;
+  margin-right: 20px;
+}
+#deleteEnsureBox a.active,
+#move-to-New-position a.active{
+	background-color: #55addc;
+	color: #ffffff;
+}
+#deleteEnsureBox .close,
+#move-to-New-position  .MoveBoxClose{
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  font-style: normal;
+  width: 13px;
+	height: 13px;
+  background: #ffffff url(../img/close.png) no-repeat;
+  background-size: 13px 13px;
+  /* border: solid 2px #55addc; */
+  text-indent: -9999px;
+}
+/* 正在删除提示框 */
+#deleting {
+  position: absolute;
+  bottom: 32px;
+  left: 40%;
+	width: 230px;
+	height: 80px;
+	background: #ffffff;
+	box-shadow: 1px 1px 5px 0px 
+		rgba(5, 2, 2, 0.1);
+	border-radius: 10px;
+	border: solid 2px #55addc;
+  color: #000000;
+  transition: 3s;
+  opacity: 1;
+  display: none;
+}
+#deleting .delete-loading-icon{
+  position: absolute;
+  top: 22px;
+  left: 32px;
+	width: 33px;
+	height: 35px;
+  background: #c7cdd1 url(../img/loading.png) no-repeat;
+  background-size: 33px 35px;
+  text-indent: -9999px;
+  transform: rotate(0deg);
+  transition: 60s;
+}
+#deleting:hover span.active{
+  transform: rotate(-720000deg);
+}
+#deleting .delete-count{
+	height: 30px;
+	font-family: FZLTXHK--GBK1-0;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 30px;
+	letter-spacing: 0px;
+  color: #000000;
+  padding-left: 89px;
+  box-sizing: border-box;
+  margin-top: 25px;
+}
+#deleting .delete-count mark,
+#deleting .delete-count em{
+  display: inline-block;
+  float: left;
+}
+
+/* 文件移动到 选择框 */
+#move-to-New-position{
+  position: absolute;
+  right: 38px;
+  top: 82px;
+	width: 410px;
+	height: 420px;
+	font-family: FZLTXHK--GBK1-0;
+	background-color: #ffffff;
+	box-shadow: 1px 1px 5px 0px 
+		rgba(5, 2, 2, 0.1);
+	border-radius: 10px;
+  border: solid 2px #55addc;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: none;
+}
+#move-to-New-position .title{
+	width: 96px;
+	height: 54px;
+	line-height: 54px;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+  color: #000000;
+}
+#move-to-New-position .currentParentFolder{
+	height: 40px;
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 26px;
+  letter-spacing: 0px;
+  text-indent: 34px;
+  color: #66757f;
+  background: url(../img/skyblue-folder-icon.png) no-repeat 0 1px;
+}
+#move-to-New-position .currentSmallMenu{
+	width: 360px;
+	height: 240px;
+	background-color: #ffffff;
+  border: solid 1px #e1e8ed;
+  margin-bottom: 25px;
+  overflow: auto;
+}
+
+#move-to-New-position .currentSmallMenu  div{
+	font-size: 14px;
+  height: 35px;
+  line-height: 200%;
+  box-sizing: border-box;
+  display: block;
+  box-sizing: border-box;
+  padding-left: 20px;
+  overflow: hidden;
+  cursor: pointer;
+}
+/* 文件移动到的目录缩小版 每行鼠标悬停 */
+#move-to-New-position .currentSmallMenu  div:hover,
+#move-to-New-position .currentSmallMenu  div:hover mark{
+  background-color: #f0f3f6;
+}
+/* 文件移动到的目录缩小版 每行点击 */
+#move-to-New-position .currentSmallMenu  div.active{
+  background-color: #e1e8ed;
+}
+/* 如果没有下一级目录，没有小三角 */
+#move-to-New-position .currentSmallMenu  div em{
+  height: 100%;
+  width: 10px;
+  font-style: normal;
+  text-indent: -9999px;
+  margin-right: 10px;
+  float: left;
+}
+/* 如果有下一级目录，有小三角 */
+/* 小三角 向下 */
+#move-to-New-position .currentSmallMenu  div em.icon-downward{
+  background: url(../img/triangle-downward.png) no-repeat 0 50%;
+}
+/* 小三角 向右 */
+#move-to-New-position .currentSmallMenu  div em.icon-rightward{
+  background: url(../img/triangle-rightward.png) no-repeat 0 50%;
+}
+
+/* 文件移动到的目录缩小版  文件夹标志*/
+#move-to-New-position .currentSmallMenu  div mark{
+  height: 100%;
+  width: 16px;
+  text-indent: -9999px;
+  margin-right: 6px;
+  float: left;
+}
+/* 文件夹 文件打开 */
+#move-to-New-position .currentSmallMenu  div mark.unfold-folder-icon{
+  background: url(../img/unfold-folder.png) no-repeat 0 50%;
+}
+/* 文件夹 文件收起 */
+#move-to-New-position .currentSmallMenu  div mark.fold-folder-icon{
+  background: url(../img/fold-folder.png) no-repeat 0 50%;
+}
+
+#move-to-New-position .currentSmallMenu div span{
+  padding: 0;
+  float: left;
+}
+#move-to-New-position .repeatAlert{
+  position: absolute;
+  bottom: 67px;
+  left: 25px;
+  width: 350px;
+  height: 12px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 12px;
+  background-color: #fff8db;
+  text-indent: 10px;
+  color: red;
+  display: none;
+}
+
+
+/* 框选框 */
+#folders-content .dragSelect{
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: .5;
+  margin:0;
+}
+
+#cover{
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0,0,.5);
+  display: none;
+}

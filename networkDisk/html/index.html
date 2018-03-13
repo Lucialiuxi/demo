@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>weiyun</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/tools.js"></script>
+    <script src="../js/index.js"></script>
+</head>
+<body>
+    <section id="wrap">
+        <!-- 头部 -->
+        <header id="head">
+            <h1 class="yun-logo">
+                <span class="logo">logo</span>
+                <span class="webTitle">微云</span>
+            </h1>
+            <div id="tips">
+                <span class="tryAgainLater">连接服务器超时，请稍后再试</span>
+                <!-- 删除成功、新建成功、新建失败 的提示条 -->
+                <span class="sucessfull">提示操作成功</span>
+                <span class="pleaseSeletFolder">请选择储存位置</span>
+            </div>
+            <div id="head-right">
+                <span id="userAvatar">
+                    <img src="../img/avatar.jpg" alt="">
+                </span>
+                <div id="know-detail">
+                    <span id="privacy-info" class="fl" >个人信息下拉图标</span>
+                    <span class="line fl"></span>
+                    <span id="setting-center" class="fr">设置</span>
+                </div>
+            </div>
+        </header>
+        <!-- 功能导航 -->
+        <nav id="nav">
+            <div class="nav-left fl">
+                <span class="download fl">下载</span>
+                <span class="share fl">分享</span>
+                <span class="moveTo fl">移动到</span>
+                <span class="rename fl">重命名</span>
+                <span class="delete fl">删除</span>
+                <span class="create fl">新建文件夹</span>
+                <span class="refresh fl">刷新</span>
+            </div>
+            <div class="nav-right fr">
+                <span class="sortMethodView fl">当前排序方式的标记</span>
+                <!--  点击排序方式的按钮 -->
+                <span class="sortMethod fl">
+                    <span class="pulldownOrCollapse">展开收起的图标</span>
+                </span>
+                <!-- 排序方式选择列表 -->
+                <ul class="sortMethodMenu">
+                    <li class="sortByTime">按时间排序</li>
+                    <li class="sortByLetter">按字母顺序</li>
+                    <li class="thumbnail">显示缩略图</li>
+                </ul>
+            </div>
+        </nav>
+        <!-- 主体 -->
+        <div id="main">
+            <!-- 文件夹树形目录 -->
+            <div id="folders-menu">
+                 <!-- <ul>
+                    <li>
+                        <div>
+                            <em class="icon-downward">三角图标</em>
+                            <mark  class="fold-folder-icon">文件图标</mark>
+                            <span>微云</span>
+                        </div>
+                        <ul>
+                            <li>
+                                <div>
+                                    <em  class="icon-downward">三角图标</em>
+                                    <mark class="fold-folder-icon">文件图标</mark>
+                                    <span>js课程</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div>
+                                            <em>三角图标</em>
+                                            <mark class="fold-folder-icon">文件图标</mark>
+                                            <span>123</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div >
+                                            <em >三角图标</em>
+                                            <mark class="fold-folder-icon">文件图标</mark>
+                                            <span>333</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <em class="icon-downward">三角图标</em>
+                                            <mark  class="fold-folder-icon">文件图标</mark>
+                                            <span>css课程</span>
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <div>
+                                                    <em  >三角图标</em>
+                                                    <mark  class="fold-folder-icon" >文件图标</mark>
+                                                    <span  >css课程</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+                                                    <em  >三角图标</em>
+                                                    <mark  class="fold-folder-icon" >文件图标</mark>
+                                                    <span  >123</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+                                                    <em  class="icon-downward">三角图标</em>
+                                                    <mark  class="fold-folder-icon" >文件图标</mark>
+                                                    <span  >js基础课程</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <em  >三角图标</em>
+                                            <mark  class="fold-folder-icon" >文件图标</mark>
+                                            <span  >1111</span>
+                                        </di>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul> -->
+            </div>
+
+            <!-- 文件夹明细 -->
+            <div id="folders-detail" class="fr">
+                <!-- 文件夹的层级显示导航 -->
+                <nav id="folders-hierarchy">
+                    <!-- <span class="folders-hierarchy-checkbox"></span>
+                    <a class="folderName" href="javaScript:;">微云</a>
+                    <em class="subordinate">下一层文件图标</em>
+                    <a class="folderName" href="javaScript:;">JS课程</a>    
+                    <em class="subordinate">下一层文件图标</em>       
+                    <a class="folderName" href="javaScript:;">CSS课程</a> -->
+                </nav>
+                <!-- 文件夹内容显示区域 -->
+                <ul id="folders-content">
+                <!-- 大图标文件-->
+                 <!-- <li class="folder-item">
+                        <span class="tickbox">文件勾选框</span>
+                        <div class="foldername">
+                            <input type="text" value="新建文件夹" disabled>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section id="cover">
+                 <!-- 删除文件夹确认框 -->
+                <div id="deleteEnsureBox">
+                    <h3>确定要删除这个文件夹吗？</h3>
+                    <h4>已删除的文件可以在回收站找到</h4>
+                    <a href="javaScript:;" class="ensure active">确 定</a>
+                    <a href="javaScript:;" class="cancel">取 消</a>
+                    <em class="close">关闭</em>
+                </div>
+                <!-- 正在删除提示框 -->
+                <div id="deleting">
+                    <span class="delete-loading-icon active">加载图标</span>
+                    <p class="delete-count">
+                        <mark>正在删除</mark>
+                        <em> 0</em>
+                        <em>/15</em>
+                    </p>
+                </div>
+                <!-- 文件移动到 选择框-->
+                <div id="move-to-New-position">
+                    <header class="title">选择存储位置</header>
+                    <h3 class="currentParentFolder">JS基础课程</h3>
+                    <!-- 文件移动到的目录缩小版 -->
+                    <div class="currentSmallMenu">
+                        <!-- <ul>
+                            <li>
+                                <div>
+                                    <em>三角图标</em>
+                                    <mark>文件图标</mark>
+                                    <span>js课程</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div>
+                                            <em>三角图标</em>
+                                            <mark>文件图标</mark>
+                                            <span>123</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <em>三角图标</em>
+                                            <mark>文件图标</mark>
+                                            <span>333</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul> -->
+                    </div>
+                    <h4 class="repeatAlert">重复提醒</h4>
+                    <a href="javaScript:;" class="ensureToMove active">确 定</a>
+                    <a href="javaScript:;" class="cancelToMove">取 消</a>
+                    <em class="MoveBoxClose">关闭</em>
+                </div>
+                    
+    </section>
+</body>
+</html>
+<!-- 
+    树形菜单：
+        pid=-1的项说明是没有父级的，渲染为一级目录，
+        拿pid=-1的一项的id,去循环对象data对比pid,只要是pid等于pid=-1的id 就渲染为它的下一级
+
+
+
+
+ -->
