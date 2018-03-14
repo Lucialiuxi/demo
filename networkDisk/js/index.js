@@ -164,7 +164,7 @@ window.onload = function(){
     }
 
     /*4.传入一个放渲染文件夹的数据对象data，
-    返回一个跟对象的id都不一样的         随机数           */
+    返回一个跟对象的id都不一样的         随机数*/
     function getNewFolderId(data){
         var arr = [];
         //生成一个1到999之间的随机整数
@@ -566,6 +566,9 @@ foldersHierarchy.addEventListener('click',function(ev){
 //----------------------------框选--------------------------------------------------
 
     document.onmousedown = function(ev){
+        console.log(ev.target.getAttribute('id'))
+        //如果出现遮罩层的时候，是不能框选的
+        if(ev.target.getAttribute('id')==='cover') return;
         foldersContent.dragbox = null;
 
         //找到拖拽时候当前的foldersContent里面所有的文件夹
@@ -1044,6 +1047,7 @@ foldersHierarchy.addEventListener('click',function(ev){
 
     //点击缩小版树型目录文件名 让其高亮
     function choosefoldInMenu(ev){
+        ev.preventDefault()
         //触发事件的节点
         var target = ev.target;
         //把触发事件的节点加到每行的div上
@@ -1072,6 +1076,7 @@ foldersHierarchy.addEventListener('click',function(ev){
    
     //点击确认按钮和移动按钮
     function ensureOrCancel(ev){
+        ev.preventDefault()
         var target = ev.target;
         //点击确认移动按钮
         if(target.classList.contains('ensureToMove')){
@@ -1103,34 +1108,34 @@ foldersHierarchy.addEventListener('click',function(ev){
                         data[moveArr[i]].pid = Number(newPid);
                         
                     }
-                }
                 
-                //移动文件的数据处理之后
-                //重新渲染大图文件区
-                renderBigfolderIcon(beforeMovePid);
-                var selectAll = foldersHierarchy.querySelector('.folders-hierarchy-checkbox');
-                //如果当前文件夹下的子文件被移动空了，就取消全选按钮，背景提示‘暂无文件’
-                if(!foldersContent.innerHTML.trim()){
-                    foldersContent.classList.add('noChild');
-                    selectAll.classList.remove('active');
-                    folderCheckedNum = 0;
+                    //移动文件的数据处理之后
+                    //重新渲染大图文件区
+                    renderBigfolderIcon(beforeMovePid);
+                    var selectAll = foldersHierarchy.querySelector('.folders-hierarchy-checkbox');
+                    //如果当前文件夹下的子文件被移动空了，就取消全选按钮，背景提示‘暂无文件’
+                    if(!foldersContent.innerHTML.trim()){
+                        foldersContent.classList.add('noChild');
+                        selectAll.classList.remove('active');
+                        folderCheckedNum = 0;
+                    }
+                    //重新渲染左边的树形菜单
+                    //树形菜单第一层级的div高度是45px，层级越低数值越小 递减3px
+                    var initalH = 45;
+                    //树形菜单第一层级的div的padding-left是20px,层级越低数值越大 递增28
+                    var initalPl = 20;
+                    //重新渲染左边的树形菜单
+                    foldersMenu.innerHTML = createHtml(data,initalId,-1,initalH,initalPl);
+                    moveToNewPosition.style.display = 'none';
+                    cover.style.display = 'none';
+                    //提示移动成功
+                    FirstShowNextDispear(operationSucessfull)
+                    operationSucessfull.innerHTML = '文件移动成功'
                 }
-                //重新渲染左边的树形菜单
-                //树形菜单第一层级的div高度是45px，层级越低数值越小 递减3px
-                var initalH = 45;
-                //树形菜单第一层级的div的padding-left是20px,层级越低数值越大 递增28
-                var initalPl = 20;
-                //重新渲染左边的树形菜单
-                foldersMenu.innerHTML = createHtml(data,initalId,-1,initalH,initalPl);
-                moveToNewPosition.style.display = 'none';
-                cover.style.display = 'none';
-                //提示移动成功
-                FirstShowNextDispear(operationSucessfull)
-                operationSucessfull.innerHTML = '文件移动成功'
 
             }else{//如果没有选择移动到哪里，就提醒要移动到哪里
-                FirstShowNextDispear(pleaseSeletFolder)
-                pleaseSeletFolder.innerHTML = '请选择储存位置'
+                repeatAlert.style.display = 'block';
+                repeatAlert.innerHTML = '请选择储存位置';
             }
         }
         //点击取消移动按钮

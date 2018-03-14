@@ -760,8 +760,8 @@ nav .sortMethodMenu .thumbnail{
 /* 文件移动到 选择框 */
 #move-to-New-position{
   position: absolute;
-  right: 38px;
-  top: 82px;
+  left: 40%;
+  top: 20%;
 	width: 410px;
 	height: 420px;
 	font-family: FZLTXHK--GBK1-0;
