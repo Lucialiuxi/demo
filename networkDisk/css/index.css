@@ -132,6 +132,7 @@ body{
   background: #f3a960 url(../img/pleaseSeletFolder.png) no-repeat 19px 8px;
   top: -60px;
   left: 450px;
+  text-align: right;
 }
 #head-right {
 	width: 103px;

@@ -686,7 +686,7 @@ foldersHierarchy.addEventListener('click',function(ev){
             var checkbox = foldersContent.querySelectorAll('li');
             //找到当前被选中的大图文件中有active的class的，然后再从那些中拿到 data-id
             //找到data-id对应的数据，然后找到子孙数据，从对象中删除那些项
-            if(checkbox){
+            if(checkbox.length>0){
                 var len = 0;
                 //存放被选中要删除文件夹的渲染数据对应的子孙数据的id
                 var childsData = [];
@@ -728,8 +728,8 @@ foldersHierarchy.addEventListener('click',function(ev){
                     deleteEnsureBox.addEventListener('click',function(ev){
                         
                         var target = ev.target;
-            //-------------------点击确认删除按钮---------------
             
+                    //-------------------点击确认删除按钮---------------
                         if(target.classList.contains('ensure')){
 
                             //就拿要删除的子孙数据和原始数据进行对比并且删除
@@ -1091,7 +1091,8 @@ foldersHierarchy.addEventListener('click',function(ev){
                 var newPid = currentSmallMenu.activeChild.dataset.id;
                 //被移动文件夹的pid
                 var beforeMovePid = foldersHierarchy.lastElementChild.getAttribute('data-id');
-                
+                var isRepeat = false;
+                var repeatTitle = null;
                 //循环数据data找到要移动的文件夹的渲染数据，修改pid
                 if(moveUnstandard(beforeMovePid,newPid)){
                     
@@ -1101,11 +1102,11 @@ foldersHierarchy.addEventListener('click',function(ev){
                         var nameIsDifferent = titleIsRepeat(newPid,name);
                         //判断移动的文件夹跟新的文件夹里面的文件名字有没有重复
                         if(nameIsDifferent){
-
-                        }else{//如果 有重复的文件名的，移入的文件名后面加1
-                            data[moveArr[i]].title =  data[moveArr[i]].title+'1';
+                            data[moveArr[i]].pid = Number(newPid);
+                        }else{//如果有移动的文件和要移动到的文件夹里文件重名，不移动重名的文件
+                            isRepeat = true;
+                            console;
                         }
-                        data[moveArr[i]].pid = Number(newPid);
                         
                     }
                 
@@ -1130,7 +1131,12 @@ foldersHierarchy.addEventListener('click',function(ev){
                     cover.style.display = 'none';
                     //提示移动成功
                     FirstShowNextDispear(operationSucessfull)
-                    operationSucessfull.innerHTML = '文件移动成功'
+                    if(isRepeat){//有不移动重名的文件，要提醒
+                        operationSucessfull.innerHTML = `重名文件移动失败`
+                        selectAllIsActive(folderCheckedNum)
+                    }else{
+                        operationSucessfull.innerHTML = '文件移动成功'
+                    }
                 }
 
             }else{//如果没有选择移动到哪里，就提醒要移动到哪里
