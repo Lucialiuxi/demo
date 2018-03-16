@@ -89,7 +89,7 @@ window.onload = function(){
     //  页面头部区域  删除成功、新建成功、新建失败 的提示条
     var operationSucessfull = document.querySelector('.sucessfull');
     //  页面头部区域 “请选择文件” 的提示条
-    var pleaseSeletFolder = document.querySelector('.pleaseSeletFolder');
+    var pleaseSelectFolder = document.querySelector('.pleaseSelectFolder');
     //  页面头部区域 “连接服务器超时，请稍后再试” 的提示条
     var tryAgainLater = document.querySelector('.tryAgainLater');
 
@@ -107,6 +107,9 @@ window.onload = function(){
     var MoveBoxClose = moveToNewPosition.querySelector('.MoveBoxClose');
     //移动到的文件夹不符合要求的提醒
     var repeatAlert = moveToNewPosition.querySelector('.repeatAlert');
+
+    //判断是否有拖拽，有拖拽的时候就不能框选
+    var isDrag = false;
 
     //定义一个变量存被点击选中的文件的个数
     var folderCheckedNum = 0;
@@ -201,10 +204,12 @@ window.onload = function(){
 
     //6.传入一个元素，然这个元素先显示再消失
     function FirstShowNextDispear(ele){
+        console.log(ele,'弹框提示')
         ele.style.display = 'block'
         animate(ele,{top:0},1000,'linear',function(){
             ele.style.display = 'none';
             
+        console.log('弹框提示1')
             animate(ele,{top:-60},1,'linear')
         })
     }
@@ -436,6 +441,8 @@ foldersHierarchy.addEventListener('click',function(ev){
 })
 //-------------------------渲染出文件主体内容显示的大图标---------------------------
 //8.传入一个id,找到这个id的子级数据渲染成大图文件显示在文件内容区域
+    var offsetArr = [];
+    var offsetData =[];
     function renderBigfolderIcon(id){
         //每次重新渲染文件夹的时候，就表示进到了新的一级，就清空当前的选中状态
         folderCheckedNum = 0;
@@ -458,7 +465,36 @@ foldersHierarchy.addEventListener('click',function(ev){
                 ` 
             }
         }
-        foldersContent.innerHTML = html
+        foldersContent.innerHTML = html;
+        transferAbsolute(folderItems)
+    }
+
+    //把布局转换为绝对定位布局
+    function transferAbsolute(folderItems){
+        offsetArr = [];
+        for( var i = 0; i < folderItems.length; i++ ){
+            offsetArr.push({
+                l:folderItems[i].offsetLeft,
+                t:folderItems[i].offsetTop
+            })
+        }
+        offsetData = offsetArr.concat();
+        for( var i = 0; i < folderItems.length; i++ ){
+            folderItems[i].style.position = 'absolute';
+            folderItems[i].style.margin = '0';
+            folderItems[i].style.left = offsetArr[i].l+'px';
+            folderItems[i].style.top = offsetArr[i].t+'px';
+        }
+    }
+    //把布局转换为相对定位布局
+    function transferRelative(folderItems){
+        for( var i = 0; i < folderItems.length; i++ ){
+            folderItems[i].style.position = 'relative';
+            folderItems[i].style.marginBottom = '40px';
+            folderItems[i].style.marginRight = '40px';
+            folderItems[i].style.left = '0';
+            folderItems[i].style.top = '0';
+        }
     }
 
 //9.传入当前文件的子文件夹，然所有文件夹取消高亮
@@ -515,6 +551,8 @@ foldersHierarchy.addEventListener('click',function(ev){
     //-----------------------点击文件夹大图标显示下一层文件图标---------
     foldersContent.addEventListener('click',function(ev){
         var target = ev.target;
+        //如果正在拖拽文件，进入下一层
+        if(isDrag===true) return;
         //在文件名不可点的情况下，点击文件名也可以进入到下一级
         if(target.nodeName==='INPUT'&&target.getAttribute('disabled')){
             target = target.parentNode.parentNode;
@@ -541,6 +579,94 @@ foldersHierarchy.addEventListener('click',function(ev){
         
     })
 
+//----------------------------------文件拖拽----------------------------------------------------
+    
+    foldersContent.addEventListener('mousedown',function(ev){
+        var target = ev.target; 
+        var crashArr = []
+        if(target.nodeName==='LI'){
+            var dragbox = target.cloneNode(true);
+            foldersContent.appendChild(dragbox);
+            dragbox.style.opacity = '.8';
+            dragbox.style.backgroundColor = '#fff'
+            isDrag = true;
+
+            //鼠标到被拖拽元素上边和左边的距离
+            var mouseLocaleX = ev.clientX - target.offsetLeft;
+            var mouseLocaleY = ev.clientY - target.offsetTop;
+
+            //文件夹拖拽不能超过文件夹模块容器范围
+            var dragMaxLeft = foldersContent.offsetWidth -target.offsetWidth;
+            var dragMaxHeight = foldersContent.offsetHeight -target.offsetHeight;
+ 
+            document.onmousemove = function(ev){
+                crashArr = []
+                //被拖动元素的mousemove过程中的位置
+                var disX = ev.clientX - mouseLocaleX;
+                var disY = ev.clientY - mouseLocaleY;
+
+                if(disX < 0 ) disX = 0;
+                if(disY < 0 ) disY = 0;
+
+                if(disX > dragMaxLeft ) disX = dragMaxLeft;
+                if(disY > dragMaxHeight ) disY = dragMaxHeight;
+
+                dragbox.style.left = disX + 'px';
+                dragbox.style.top = disY + 'px';
+                
+                //找到与拖拽元素碰撞的文件夹，放到数组中
+                for (var i = 0; i < folderItems.length; i++) {
+                    if(ElementsCrash(dragbox,folderItems[i])&&
+                    folderItems[i]!==dragbox&&
+                    folderItems[i]!==target
+                    ){
+                        crashArr.push(folderItems[i])
+                    }
+                }
+                
+            }
+            document.onmouseup = function(){
+                console.log(crashArr)
+                document.onmousemove = document.onmouseup = null;
+                //找到拖拽元素中心点
+                var dragCenterX = dragbox.offsetLeft + dragbox.offsetWidth/2;
+                var dragCenterY = dragbox.offsetTop + dragbox.offsetHeight/2;
+
+                if(crashArr.length>0){
+                    var min = Infinity;
+                    var closetFolder = null;
+                    for (var i = 0; i < crashArr.length; i++) {
+                    
+                        //找到被碰撞元素的中心点
+                        var centerX = crashArr[i].offsetLeft + crashArr[i].offsetWidth/2;
+                        var centerY = crashArr[i].offsetTop + crashArr[i].offsetHeight/2;
+                        
+                        //求出拖拽元素中心点和碰撞元素的点的距离
+                        //x^2 + y^2 = z^2;
+                        var z2 = Math.pow(centerX-dragCenterX,2) + Math.pow(centerY-dragCenterY,2);
+                        var z = Math.sqrt(z2);
+
+                        if(z < min){
+                            min = z;
+                            closetFolder =  crashArr[i];
+                        }
+                    }
+                    console.log(closetFolder,dragbox)
+                    var closetFolderId = closetFolder.dataset.id
+                    var dragboxId = dragbox.dataset.id
+                    var dragboxPid = data[dragboxId].pid;
+                    data[dragboxId].pid = Number(closetFolderId);
+                    target.remove();
+                    foldersMenu.innerHTML = createHtml(data,-1,level,initalH,initalPl);
+                    renderBigfolderIcon(dragboxPid)
+                }
+                dragbox.remove();
+                isDrag = false;
+            }
+            console.log(isDrag)
+        }
+
+    })
     //--------------------------给文件单选绑定点击事件--------------------------------
     foldersContent.addEventListener('click',function(ev){
         var target = ev.target;
@@ -573,9 +699,11 @@ foldersHierarchy.addEventListener('click',function(ev){
 
         //找到拖拽时候当前的foldersContent里面所有的文件夹
         var folderItems = foldersContent.getElementsByTagName('li');
-        
+        console.log(isDrag)
         //如果所在页面没有文件，就不能框选
         if(foldersContent.innerHTML.trim()=='') return;
+        //如果正在拖拽文件，就不能框选
+        if(isDrag===true) return;
 
         //创建框选元素
         var dragSelect = document.createElement('div');
@@ -764,11 +892,8 @@ foldersHierarchy.addEventListener('click',function(ev){
 
                            //在data中删除要找到要删除的子孙数据后重新渲染树形菜单
                            foldersMenu.innerHTML = createHtml(data,initalId,level,initalH,initalPl)
-                           //删除选中的大图标文件
-                           for( var i = 0; i < deletedFoldersArr.length; i++){
-                               deletedFoldersArr[i].remove()
-                           }
-
+                           //重新渲染大图标文件
+                            renderBigfolderIcon(deletedFolderPid)
                            //删除文件之后给树形菜单高亮的是被删除这个文件夹的父级
                            getDataIdAddBg(foldersMenu,deletedFolderPid,divs)
                            selectAllIsActive(folderCheckedNum);
@@ -790,8 +915,8 @@ foldersHierarchy.addEventListener('click',function(ev){
                     })
                }else{//如果没有选中文件
                 //提示请选择文件
-                 FirstShowNextDispear(pleaseSeletFolder)
-                 pleaseSeletFolder.innerHTML = '请选择要删除文件'
+                 FirstShowNextDispear(pleaseSelectFolder)
+                 pleaseSelectFolder.innerHTML = '请选择要删除文件'
                }
             }
             
@@ -820,14 +945,14 @@ foldersHierarchy.addEventListener('click',function(ev){
 
             var title = '新建文件夹';
             foldersContent.innerHTML += `
-                <li data-id="${objId}" class="folder-item">
+                <li data-id="${objId}" class="folder-item newOne">
                     <span class="tickbox">文件勾选框</span>
                     <div class="foldername">
                         <input type="text" value="${title}" />
                     </div>
                 </li>
             `;
-            
+            transferRelative(folderItems)
             //如果新建文件的那个文件是没有内容的，就先取消文件区域背景【提示没有文件的背景】
             if(getComputedStyle(foldersContent).backgroundImage){
                 foldersContent.classList.remove('noChild')
@@ -850,7 +975,7 @@ foldersHierarchy.addEventListener('click',function(ev){
         var tiptext = '文件重命名'
         //点击重命名文件夹按钮
         if(target.classList.contains('rename')){
-            pleaseSeletFolder.innerHTML = '请选择要重命名的文件'
+            // pleaseSelectFolder.innerHTML = '请选择要重命名的文件'
             if(folderItems.length>0){//需要文件夹内容去有内容才执行
                 for(var i = 0; i < folderItems.length; i++){
                     
@@ -861,7 +986,9 @@ foldersHierarchy.addEventListener('click',function(ev){
                 }
                 
                 if(activeNum>1){
-                    alert('只能选择一个文件夹重命名哦~');
+                    // alert('只能选择一个文件夹重命名哦~');
+                    FirstShowNextDispear(pleaseSelectFolder);
+                    pleaseSelectFolder.innerHTML = '只能选择一个文件夹重命名哦~'
                     folderCheckedNum = 0;
                     // 文件夹的层级显示导航 的 全选按钮
                     var selectAll = foldersHierarchy.querySelector('.folders-hierarchy-checkbox')
@@ -869,7 +996,8 @@ foldersHierarchy.addEventListener('click',function(ev){
                     RmoveAllBigFoldersActive(folderItems)
                 }else if(activeNum==0){
                    //提示请选择要重命名的文件
-                    FirstShowNextDispear(pleaseSeletFolder)
+                    FirstShowNextDispear(pleaseSelectFolder)
+                    // pleaseSelectFolder.innerHTML = '请选择要重命名的文件哦~'
                 }else if(activeNum==1){
                     //传入文件夹和文件夹名字，让文件夹名获取焦点并且可以修改，重新渲染文件夹名和属性菜单
                     modifyFolderName(renameFolder,tiptext)
@@ -898,6 +1026,7 @@ foldersHierarchy.addEventListener('click',function(ev){
         FolderName.classList.add('onfocus');
         //文件名失去焦点
         FolderName.onblur = function(ev){
+            console.log('文件名失去焦点')
             title = FolderName.value;
             if(FolderName.value.trim()){//如果输入的名字是有内容的
                 if(titleIsRepeat(pid,title)){//调用函数检测是否重复，如果文件名没有重复
@@ -990,8 +1119,8 @@ foldersHierarchy.addEventListener('click',function(ev){
                 
                 if(activeNum===0){//如果没有选中的文件夹
                     //提示请选择文件
-                     FirstShowNextDispear(pleaseSeletFolder)
-                     pleaseSeletFolder.innerHTML = '请选择要移动的文件'
+                     FirstShowNextDispear(pleaseSelectFolder)
+                     pleaseSelectFolder.innerHTML = '请选择要移动的文件'
                 }else{//如果有选中的文件夹
                     //渲染文件移动到的目录缩小版树型目录
                     var initalH = 35;
@@ -1023,9 +1152,7 @@ foldersHierarchy.addEventListener('click',function(ev){
     */
     function moveUnstandard(pid1,targetId){
         var arr111 = [];
-        
         repeatAlert.style.display = 'none';
-        
         if(targetId==pid1){
             repeatAlert.style.display = 'block';
             repeatAlert.innerHTML = '已经在该文件夹下';
@@ -1047,7 +1174,6 @@ foldersHierarchy.addEventListener('click',function(ev){
 
     //点击缩小版树型目录文件名 让其高亮
     function choosefoldInMenu(ev){
-        ev.preventDefault()
         //触发事件的节点
         var target = ev.target;
         //把触发事件的节点加到每行的div上
@@ -1076,7 +1202,6 @@ foldersHierarchy.addEventListener('click',function(ev){
    
     //点击确认按钮和移动按钮
     function ensureOrCancel(ev){
-        ev.preventDefault()
         var target = ev.target;
         //点击确认移动按钮
         if(target.classList.contains('ensureToMove')){
@@ -1092,6 +1217,7 @@ foldersHierarchy.addEventListener('click',function(ev){
                 //被移动文件夹的pid
                 var beforeMovePid = foldersHierarchy.lastElementChild.getAttribute('data-id');
                 var isRepeat = false;
+                var isRepeatNum = 0;
                 var repeatTitle = null;
                 //循环数据data找到要移动的文件夹的渲染数据，修改pid
                 if(moveUnstandard(beforeMovePid,newPid)){
@@ -1105,7 +1231,8 @@ foldersHierarchy.addEventListener('click',function(ev){
                             data[moveArr[i]].pid = Number(newPid);
                         }else{//如果有移动的文件和要移动到的文件夹里文件重名，不移动重名的文件
                             isRepeat = true;
-                            console;
+                            isRepeatNum++;
+                            continue;
                         }
                         
                     }
@@ -1132,7 +1259,7 @@ foldersHierarchy.addEventListener('click',function(ev){
                     //提示移动成功
                     FirstShowNextDispear(operationSucessfull)
                     if(isRepeat){//有不移动重名的文件，要提醒
-                        operationSucessfull.innerHTML = `重名文件移动失败`
+                        operationSucessfull.innerHTML = `${isRepeatNum?isRepeatNum:''}个重名文件移动失败`
                         selectAllIsActive(folderCheckedNum)
                     }else{
                         operationSucessfull.innerHTML = '文件移动成功'
@@ -1154,7 +1281,6 @@ foldersHierarchy.addEventListener('click',function(ev){
         }
     }
 
-    
 
 
 
